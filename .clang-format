@@ -5,6 +5,7 @@ BreakAfterReturnType: All
 BinPackArguments: false
 BinPackParameters: OnePerLine
 BinPackLongBracedList: false
+AllowAllArgumentsOnNextLine: false
 AttributeMacros:
   - _Use_decl_annotations_
   - _Must_inspect_result_

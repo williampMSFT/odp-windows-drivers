@@ -1,0 +1,75 @@
+;/*++
+;
+; Copyright (c) OpenDevicePartnership and Contributors. All rights reserved.
+;
+; Module Name:
+;
+;     hidthermal.inx
+;
+; Abstract:
+;
+;     INF file for the HID thermal management client driver.
+;
+;--*/
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider=%ProviderName%
+DriverVer=10/08/2026,1.0.0.0
+CatalogFile=hidthermal.cat
+PnpLockdown=1
+
+[DestinationDirs]
+UMDriverCopy=13
+
+[SourceDisksNames]
+1=%MediaDescription%
+
+[SourceDisksFiles]
+hidthermal.dll=1
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer]
+%ManufacturerName%=Standard,NT$ARCH$.10.0...22000
+
+[Standard.NT$ARCH$.10.0...22000]
+%HidThermal.DeviceDesc%=HidThermal_Install,HID_DEVICE_UP:FFED_U:0001
+
+[HidThermal_Install.NT]
+Include=WUDFRD.inf
+Needs=WUDFRD.NT
+CopyFiles=UMDriverCopy
+
+[HidThermal_Install.NT.HW]
+Include=WUDFRD.inf
+Needs=WUDFRD.NT.HW
+AddReg=HidThermal_Security
+
+[HidThermal_Install.NT.Services]
+Include=WUDFRD.inf
+Needs=WUDFRD.NT.Services
+
+[HidThermal_Install.NT.Wdf]
+UmdfService=hidthermal,HidThermal_Service
+UmdfServiceOrder=hidthermal
+
+[HidThermal_Service]
+UmdfLibraryVersion=$UMDFVERSION$
+ServiceBinary="%13%\hidthermal.dll"
+
+[UMDriverCopy]
+hidthermal.dll
+
+[HidThermal_Security]
+HKR,,DeviceCharacteristics,0x10001,0x0100
+HKR,,Security,,"D:P(A;;GA;;;SY)(A;;GA;;;BA)"
+
+[Strings]
+ProviderName="OpenDevicePartnership"
+ManufacturerName="OpenDevicePartnership"
+MediaDescription="HID thermal management driver installation media"
+HidThermal.DeviceDesc="HID Thermal Management Driver"

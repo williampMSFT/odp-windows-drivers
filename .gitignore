@@ -9,7 +9,12 @@
 drivers/qemu/QemuI2C/arm64
 drivers/qemu/pl061gpio/arm64
 drivers/hid/HIDTime/arm64
+drivers/hid/HIDTime/x64
+drivers/hid/hidthermal/arm64
+drivers/hid/hidthermal/x64
 drivers/acpi/ectest/arm64
+tools/hidthermalctl/ARM64/
+tools/hidthermalctl/x64/
 
 # NuGet restore (project.assets.json, generated props/targets)
 **/obj/
